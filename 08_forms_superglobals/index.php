@@ -1,8 +1,8 @@
 <?php
-// 33:11
+// 49:37
 $contactsFile = "contacts.json";
-$contacts = file_exists($contactsFile) ? json_decode(file_get_contents($contactsFile), true) : [];
-
+$contacts = is_file($contactsFile) ? json_decode(file_get_contents($contactsFile), true) : [];
+// file_exist does not discrimate between file or directory - it check if anything exists so use is_file()
 ?>
 
 <!DOCTYPE html>
@@ -16,15 +16,29 @@ $contacts = file_exists($contactsFile) ? json_decode(file_get_contents($contacts
     <a href="create.php">Create new contact</a>
 
 <ul>
-    <?php foreach ($contacts as $contact): ?>
-        <li>
+    <?php foreach ($contacts as $contact): ?> <!-- notice the : -->
+        <!-- <li>
             <img src="<?php echo $contact['image']; ?>" height="50">
             <?php echo "{$contact['name']} - {$contact['email']} - {$contact['phone']}"; ?>
             <a href="delete.php?id=<?php echo $contact['id'] ?>">
                 Delete
             </a>
-        </li>
+        </li> -->
+        <li>
+    <img src="<?= htmlspecialchars($contact['image']) ?>" height="50">
+
+    <?= htmlspecialchars($contact['name']) ?> -
+    <?= htmlspecialchars($contact['email']) ?> -
+    <?= htmlspecialchars($contact['phone']) ?>
+
+    <a href="delete.php?id=<?= (int)$contact['id'] ?>">
+        Delete
+    </a>
+    <!-- Deleting using a GET method is bad -->
+</li>
     <?php endforeach; ?>
 </ul>
 </body>
 </html>
+
+    <!-- <?php echo $name; ?> is <?= $name ?>-->
