@@ -1,5 +1,7 @@
 <?php
 
+// use <pre> to display arrays
+
 // Indexed Array
 // $fruits = ["Apple", "Banana", "Cherry"];
 // echo $fruits[0] . '<br>';

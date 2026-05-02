@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagePath = $uploadsDir . $imageName;
 
         if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-            $contacts = file_exists($contactsFile) ? 
+            $contacts = file_exists($contactsFile) ?
                         json_decode(file_get_contents($contactsFile))
                         : [];
 
@@ -31,9 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
 
 
-            file_put_contents($contactsFile, 
-            json_encode($contacts, JSON_PRETTY_PRINT));
-            
+            file_put_contents(
+                $contactsFile,
+                json_encode($contacts, JSON_PRETTY_PRINT)
+            );
+
             echo "Contact added: $name ($email, $phone)";
         } else {
             echo "Image upload failed";
@@ -51,6 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     
@@ -71,3 +79,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 </body>
 </html>
+
+<!-- accept is just a filter for the file picker UI. It does not enforce security. Always validate. -->

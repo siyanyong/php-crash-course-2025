@@ -1,4 +1,5 @@
 <?php
+// 33:11
 $contactsFile = "contacts.json";
 $contacts = file_exists($contactsFile) ? json_decode(file_get_contents($contactsFile), true) : [];
 

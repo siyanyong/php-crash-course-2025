@@ -34,7 +34,7 @@
 //     echo 'You should watch Harry Potter';
 // }
 
-// Switch
+// Switch (can use match)
 $day = 3;
 
 switch ($day) {

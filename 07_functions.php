@@ -21,8 +21,10 @@
 // greet("Alice"); // Output: Hello, Alice!
 
 // Return from function
-function multiply($a, $b) {
+// use default
+function multiply(int $a, $b = 3) {
     return $a * $b;
 }
-$result = multiply(4, 3);
+// use named arguments
+$result = multiply(a:4);
 echo $result; // Output: Result: 12
