@@ -1,10 +1,12 @@
 <?php
 
-// 56:13
+// Classes in src directory
+// If you have a Model folder, it would be
+// namespace Zura\Testing\Model
 
 namespace Zura\Testing;
 
-class MyApp 
+class MyApp
 {
     public function run()
     {
