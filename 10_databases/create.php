@@ -18,13 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagePath = $uploadsDir . $imageName;
 
         if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
+            // This is the part that changed:
             $stmt = $pdo->prepare("INSERT INTO contacts (name, email, phone, image) VALUES (:name, :email, :phone, :image)");
             $stmt->execute([
                 ':name' => $name,
                 ':email' => $email,
                 ':phone' => $phone,
                 ':image' => $imagePath  // Save the image file name to the database
-            ]);
+            ]); // the colon is redundent
 
             echo "Contact added: $name ($email, $phone)";
         } else {
@@ -43,6 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     
